@@ -18,7 +18,7 @@ wt_path              = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src
 test_path            = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src_test\wt\
 object_json_path     = c:\final_v2\.github\object.json
 bac_src_path         = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\
-ixl_handler_path     = \\wsl.localhost\WindchillVM\opt\wnc\Windchill\DevModules\IXLoad\src\wt\ixb\handlers\forclasses\
+ixl_handler_path     = \\wsl.localhost\WindchillVM\opt\wnc\Windchill\DevModules\IXLoad\src\wt\
 obj_registry_path    = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\com\ptc\windchill\bac\objreg\
 service_xconf_path   = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\com\ptc\windchill\bac\BAC-service.properties.xconf
 md_templates_path    = C:\final_v2\md\
@@ -128,11 +128,11 @@ preview_delegate_path = `//wsl.localhost/WindchillVM/opt/wnc/wcmod/modules/BAC/s
 **ACTION**:
 - Read complete `expimp.md` file (no line limits)
 - Generate handler Java file following template
-- Save to: `{ixl_handler_path}{selected_object.template}.java`
+- Save to: `{ixl_handler_path}{directory_name}/ixb/{selected_object.template}.java`
 - Ensure proper imports and class structure
 
 **VALIDATION**: Confirm handler file created with valid Java syntax
-
+- Confirm proper package naming: `wt.{directory_name}.bac`
 ---
 
 ### STEP 7: Register Services
