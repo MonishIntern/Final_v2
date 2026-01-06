@@ -16,13 +16,13 @@
 ```
 wt_path              = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\wt\
 test_path            = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src_test\wt\
-object_json_path     = c:\FINAL\.github\object.json
+object_json_path     = c:\final_v2\.github\object.json
 bac_src_path         = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\
 ixl_handler_path     = \\wsl.localhost\WindchillVM\opt\wnc\Windchill\DevModules\IXLoad\src\wt\ixb\handlers\forclasses\
 obj_registry_path    = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\com\ptc\windchill\bac\objreg\
 service_xconf_path   = \\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\com\ptc\windchill\bac\BAC-service.properties.xconf
-md_templates_path    = C:\FINAL\md\
-test_templates_path   = C:\FINAL\test\
+md_templates_path    = C:\final_v2\md\
+test_templates_path   = C:\final_v2\test\
 preview = `//wsl.localhost/WindchillVM/opt/wnc/wcmod/modules/BAC/src/com/ptc/windchill/bac/client/delegates/preview/impl/`
 preview_delegate_path = `//wsl.localhost/WindchillVM/opt/wnc/wcmod/modules/BAC/src/com/ptc/windchill/bac/client/`
 
@@ -88,7 +88,7 @@ preview_delegate_path = `//wsl.localhost/WindchillVM/opt/wnc/wcmod/modules/BAC/s
 - Follow template instructions for proper category naming and registration patterns
 
 ## Collection category registration guidance
-- Update `CollectionCategory.java` by adding `public static final CollectionCategory <Template> = toCollectionCategory("<Template>");` following the existing constant anchors. Use the CASE-SENSITIVE template name.
+- Update `CollectionCategory.java` by adding `public static final_v2 CollectionCategory <Template> = toCollectionCategory("<Template>");` following the existing constant anchors. Use the CASE-SENSITIVE template name.
 
 **VALIDATION**: Confirm category registration complete
 
@@ -315,7 +315,7 @@ After completing all steps, verify:
 - [ ] 9 test delegate files generated in `{test_path}{directory_name}\bac\`
 - [ ] All validations for each step confirmed
 
-**FINAL ACTION**: Report completion status to user with summary of all files created/modified
+**final_v2 ACTION**: Report completion status to user with summary of all files created/modified
 
 ---
 
@@ -328,7 +328,7 @@ After completing all steps, verify:
 
 ---
 
-## FINAL BUILD & ENVIRONMENT STEPS
+## final_v2 BUILD & ENVIRONMENT STEPS
 After all registration and file-generation steps are completed and validated, perform the following environment and build steps to compile the BAC sources.
 
 1. **Set Windchill build environment (inside WindchillVM WSL)**:
