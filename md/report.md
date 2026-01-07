@@ -217,7 +217,7 @@ protected String getDescriptionForAccessibleObject(Persistable obj, Locale local
 **Collection Category:**
 ```java
 CollectionCategory TEMPLATE = toCollectionCategory("Template");
-return CollectionCategory.TEMPLATE;
+return CollectionCategory.TEMPLATE_UPPERCASE;
 ```
 
 #### Collection Processing Patterns

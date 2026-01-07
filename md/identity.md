@@ -224,7 +224,7 @@ private static WTMessage getIdentity(String name, String containerPath, String v
 **Collection Category:**
 ```java
 CollectionCategory TEMPLATE = toCollectionCategory("Template");
-return CollectionCategory.TEMPLATE;
+return CollectionCategory.TEMPLATE_UPPERCASE;
 ```
 
 #### Attribute Extraction Patterns

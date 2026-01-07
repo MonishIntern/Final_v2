@@ -220,7 +220,7 @@ public void delete(FederationActionRequest request, List<Map<String, String>> ob
 **Collection Category:**
 ```java
 CollectionCategory TEMPLATE = toCollectionCategory("Template");
-return CollectionCategory.TEMPLATE;
+return CollectionCategory.TEMPLATE_UPPERCASE;
 ```
 
 #### Private Helper Methods to Implement

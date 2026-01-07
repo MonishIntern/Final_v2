@@ -152,7 +152,7 @@ deleteRecord.setName(templateObj. getName());
 **Collection Category:**
 ```java
 CollectionCategory TEMPLATE = toCollectionCategory("Template");
-return CollectionCategory.TEMPLATE;
+return CollectionCategory.TEMPLATE_UPPERCASE;
 ```
 
 <!-- **For Version Attribute:**

@@ -176,8 +176,8 @@ if (spec.getDateRange() != null) {
 ```
 **Collection Category:**
 ```java
-CollectionCategory TEMPLATE = toCollectionCategory("Template");
-return CollectionCategory.TEMPLATE;
+CollectionCategory TEMPLATE_UPPERCASE = toCollectionCategory("Template");
+return CollectionCategory.TEMPLATE_UPPERCASE;
 ```
 
 **Collection Iteration with SubCollection:**

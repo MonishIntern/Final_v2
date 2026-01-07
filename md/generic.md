@@ -5,7 +5,7 @@ This instruction file guides the update of `BACGenericDeleteRecordObjInfos.xsd` 
 
 ## Directory Configuration
 - `generic_xsd_path` = `\\wsl.localhost\WindchillVM\opt\wnc\wcmod\modules\BAC\src\com\ptc\windchill\bac\schema\BACGenericDeleteRecordObjInfos.xsd`
-- `object.json` = `c:/FINAL/.github/object.json`
+- `object.json` = `c:/FINAL_V2/.github/object.json`
 
 ## Purpose
 When objects are deleted in the BAC system, their delete records need to be tracked with all relevant attributes. This schema defines the structure for storing deleted object information.
@@ -41,14 +41,6 @@ When objects are deleted in the BAC system, their delete records need to be trac
     <xs:sequence>
         <xs:element name="name" type="xs:string" minOccurs="0"/>
         <xs:element name="number" type="xs:string" minOccurs="0"/>
-        <xs:element name="state" type="xs:string" minOccurs="0"/>
-        <xs:element name="description" type="xs:string" minOccurs="0"/>
-        <xs:element name="modifiedBy" type="xs:string" minOccurs="0"/>
-        <xs:element name="createTimestamp" type="xs:string" minOccurs="0"/>
-        <xs:element name="modifyTimestamp" type="xs:string" minOccurs="0"/>
-        <xs:element name="containerName" type="xs:string" minOccurs="0"/>
-        <xs:element name="lifeCycleState" type="xs:string" minOccurs="0"/>
-        <xs:element name="owner" type="xs:string" minOccurs="0"/>
     </xs:sequence>
 </xs:complexType>
 ```
@@ -74,6 +66,8 @@ When objects are deleted in the BAC system, their delete records need to be trac
   - `key_attributes` (list of attributes to include)
   - Any custom attributes defined for the object
 
+**Safety check (required):** If `object.json` is missing any of `template` or `key_attributes`, STOP and ask the user — do not proceed with default or guessed values.
+
 ### Step 2: Read Schema File
 - Open `BACGenericDeleteRecordObjInfos.xsd` from `generic_xsd_path`
 - Understand the existing schema structure:
@@ -93,14 +87,7 @@ From `object.json`, extract all attributes to include in the sequence:
 **Standard Attributes** (commonly included):
 - `name` - Object name
 - `number` - Object number/identifier
-- `state` - Current state
-- `description` - Object description
-- `modifiedBy` - User who last modified
-- `createTimestamp` - Creation timestamp
-- `modifyTimestamp` - Last modification timestamp
-- `containerName` - Parent container
-- `lifeCycleState` - Lifecycle state
-- `owner` - Object owner
+
 
 **Custom Attributes** (from object.json):
 - Extract from `key_attributes` array
@@ -115,14 +102,6 @@ Create the complexType with all attributes:
         <!-- Standard attributes -->
         <xs:element name="name" type="xs:string" minOccurs="0"/>
         <xs:element name="number" type="xs:string" minOccurs="0"/>
-        <xs:element name="state" type="xs:string" minOccurs="0"/>
-        <xs:element name="description" type="xs:string" minOccurs="0"/>
-        <xs:element name="modifiedBy" type="xs:string" minOccurs="0"/>
-        <xs:element name="createTimestamp" type="xs:string" minOccurs="0"/>
-        <xs:element name="modifyTimestamp" type="xs:string" minOccurs="0"/>
-        <xs:element name="containerName" type="xs:string" minOccurs="0"/>
-        <xs:element name="lifeCycleState" type="xs:string" minOccurs="0"/>
-        <xs:element name="owner" type="xs:string" minOccurs="0"/>
         
         <!-- Custom attributes from object.json -->
         <xs:element name="{customAttribute1}" type="xs:string" minOccurs="0"/>
@@ -156,6 +135,8 @@ Create the element reference:
 - Add new complexType **BEFORE** the closing `</xs:schema>` tag
 - Maintain alphabetical order if possible
 - Add blank line before and after for readability
+
+**Preferred precise insertion point:** Add the new complexType in the section where other `<xs:complexType>` definitions appear (above the `<xs:element name="BACGenericDeleteRecordObjInfos">` element). Do NOT append new complexTypes after the `BACGenericDeleteRecordObjInfos` element — that element contains the choice that references named types and should reference types declared earlier.
 
 #### For Element:
 - Find the section with existing `<xs:element>` declarations
@@ -196,14 +177,6 @@ Insert both the complexType and element declarations at their appropriate locati
             <!-- Standard attributes -->
             <xs:element name="name" type="xs:string" minOccurs="0"/>
             <xs:element name="number" type="xs:string" minOccurs="0"/>
-            <xs:element name="state" type="xs:string" minOccurs="0"/>
-            <xs:element name="description" type="xs:string" minOccurs="0"/>
-            <xs:element name="modifiedBy" type="xs:string" minOccurs="0"/>
-            <xs:element name="createTimestamp" type="xs:string" minOccurs="0"/>
-            <xs:element name="modifyTimestamp" type="xs:string" minOccurs="0"/>
-            <xs:element name="containerName" type="xs:string" minOccurs="0"/>
-            <xs:element name="lifeCycleState" type="xs:string" minOccurs="0"/>
-            <xs:element name="owner" type="xs:string" minOccurs="0"/>
             
             <!-- Custom attributes -->
             <xs:element name="priority" type="xs:string" minOccurs="0"/>
@@ -283,16 +256,6 @@ Common attributes to include for most Windchill objects:
 |-----------|-------------|------|
 | name | Object name | xs:string |
 | number | Object identifier | xs:string |
-| state | Current state | xs:string |
-| description | Object description | xs:string |
-| modifiedBy | Last modifier | xs:string |
-| createTimestamp | Creation time | xs:string |
-| modifyTimestamp | Last modified time | xs:string |
-| containerName | Parent container | xs:string |
-| lifeCycleState | Lifecycle state | xs:string |
-| owner | Object owner | xs:string |
-| version | Version info | xs:string |
-| folder | Folder location | xs:string |
 
 **Note**: Not all objects need all attributes. Use object.json to determine which attributes are relevant.
 
@@ -357,10 +320,7 @@ After updating the schema:
   "template": "WTChangeOrder2",
   "key_attributes": [
     "name",
-    "number",
-    "state",
-    "priority",
-    "severity"
+    "number"
   ]
 }
 ```
@@ -370,9 +330,6 @@ After updating the schema:
 <xs:sequence>
     <xs:element name="name" type="xs:string" minOccurs="0"/>
     <xs:element name="number" type="xs:string" minOccurs="0"/>
-    <xs:element name="state" type="xs:string" minOccurs="0"/>
-    <xs:element name="priority" type="xs:string" minOccurs="0"/>
-    <xs:element name="severity" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 ```
 
